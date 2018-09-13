@@ -1,20 +1,21 @@
 {
-  "name": "test",                                                
-  "version": "1.0.0",                                           
-  "description": "A Vue.js project",                             
-  "author": "",                                                 
+  "name": "test",
+  "version": "1.0.0",
+  "description": "A Vue.js project",
+  "author": "",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --open --hot --progress --config build/webpack.dev.conf.js",                            
-    "start": "npm run dev",                                      
-    "build": "node build/build.js"                               
-  },   
-  "dependencies": {                                                                                                           
-    "vue": "^2.5.2",                                                                                                           
-    "vue-router": "^3.0.1"                                                                                                     
-  },  
-  "devDependencies": {                                                                                                         
-    "autoprefixer": "^7.1.2",                                                                                                  
+    "dev": "webpack-dev-server --inline --open --hot --progress --config build/webpack.dev.conf.js",
+    "start": "npm run dev",
+    "build": "node build/build.js"
+  },
+  "dependencies": {
+    "postcss-px2rem": "^0.3.0",
+    "vue": "^2.5.2",
+    "vue-router": "^3.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-loader": "^7.1.1",
