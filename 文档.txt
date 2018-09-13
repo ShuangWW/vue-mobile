@@ -1,0 +1,66 @@
+																																										vue开发移动端项目环境配置
+参考文章：http://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html
+1.vue环境开发配置
+			安装node.js
+						地址：http://nodejs.org/#download 						
+						node -v      查看版本，版本应在4.x.x以上
+						nodejs自带npm不需要额外安装
+			安装npm 
+						地址：https://github.com/isaacs/npm/tags；
+						npm -v       查看版本，版本应在3.x.x以上
+			安装cnpm
+						淘宝镜像，加快下载速度
+						安装命令：npm i -g cnpm / npm install cnpm -g –registry=https://registry.npm.taobao.org
+						cnpm -v     查看版本
+			vue
+						cnpm install vue
+			vue-cli
+						cnpm install --global vue-cli
+			基于webpack的vue项目创建
+						vue init webpack my-project
+			进入项目安装并运行
+						cd my-project
+						cnpm i
+						cnpm run dev
+			浏览器运行（默认8080端口）：http://localhost:8080/
+			
+2.项目开发（750*1344设计稿）
+			重置全局样式
+						src/assets创建style文件夹，新建reset.scss文件
+						在main.js中引入该文件，import '@/assets/style/reset.scss'
+			使用.scss,需要安装其依赖包
+						cnpm i --save-dev sass-loader
+						cnpm i --save-dev node-sass
+						注：正常情况下，vue生成项目的build文件夹下的untils.js文件下自动配置好关于scss，无需重复配置，否则报错
+			移动端屏幕适配解决
+						采用手淘方式
+								在index.html文件下引入
+											<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+											采用内联方式引入，在所有资源引入之前加载
+								安装postcss-px2rem,将px转为rem
+											cnpm install postcss-px2rem --save-dev
+											在build/vue-loader.conf.js文件下进行相关配置											
+													const px2rem=require('postcss-px2rem')
+													module.exports = {
+														  loaders: utils.cssLoaders({
+																sourceMap: sourceMapEnabled,
+																extract: isProduction
+														  }),
+														  cssSourceMap: sourceMapEnabled,
+														  cacheBusting: config.dev.cacheBusting,
+														  transformToRequire: {
+																video: ['src', 'poster'],
+																source: 'src',
+																img: 'src',
+																image: 'xlink:href'
+														  },
+														  postcss:[px2rem({'remUnit':75})] 
+												}
+									使用
+											.hello {
+												height: 60px;/*px*/                                           --根据dpr切换对应的值，默认写dpr=2的值，单位为px
+												width: 300px;												    --转换为rem
+												font-size: 32px;/*px*/                                        --根据dpr切换对应的值，默认写dpr=2的值，单位为px
+												border: 1px solid red;/*no*/                               --不变
+											}
+			
